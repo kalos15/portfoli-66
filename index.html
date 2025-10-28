@@ -10,6 +10,27 @@
     <link rel="stylesheet" href="style.css"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script> 
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // 🌟 REPLACE WITH YOUR ACTUAL FIREBASE CONFIG
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 <body class="bg-gradient-custom min-h-screen"> 
 
@@ -18,107 +39,29 @@
         <button id="menu-toggle" class="text-3xl bg-transparent border-none cursor-pointer">&#x2261;</button>
         
         <div id="menu-dropdown" class="absolute top-12 right-4 bg-white rounded-lg shadow-xl hidden w-40 z-30 overflow-hidden">
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-action="open-register">Register</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100" data-action="open-login">Login</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hidden" data-action="logout">Logout</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hidden" id="logout-link">Logout</a>
         </div>
     </header>
 
     <div class="pt-20 px-4 w-full max-w-lg mx-auto">
         <div class="flex flex-col gap-3">
             
-            <div id="welcome-box" class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center justify-center gap-3 text-center">
-                </div>
+            <div id="welcome-box" class="bg-white rounded-xl shadow-md p-4 flex flex-col items-center justify-center gap-3 text-center min-h-[90px]">
+                <p class="text-lg font-semibold text-gray-900">Connecting via Telegram...</p>
+                <div class="animate-pulse bg-gray-200 h-4 w-1/2 rounded"></div>
+            </div>
             
             <hr class="divider">
             
             <section id="categories" class="mt-8">
-                <h2 class="text-white text-lg font-semibold mb-3 text-center">Explore Our Categories</h2>
-                <div class="category-grid bg-white rounded-xl shadow-md p-4 grid grid-cols-4 gap-3">
-                    <button class="category-item flex flex-col items-center justify-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-category="facebook">
-                        <svg class="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                        <span class="text-xs mt-1">Facebook</span>
-                    </button>
-                    <button class="category-item flex flex-col items-center justify-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors" data-category="instagram">
-                        <svg class="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        <span class="text-xs mt-1">Instagram</span>
-                    </button>
-                    </div>
-            </section>
+                </section>
             
             <form id="order-form" class="bg-white rounded-xl shadow-md p-6 mt-6 mb-10">
-                <div class="relative mb-6">
-                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">&#x1F50D;</span>
-                    <input type="text" id="service-search" placeholder="Search Services..." class="w-full pl-10 py-3 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                </div>
-            
-                <div class="space-y-4">
-                    <div class="form-group">
-                        <label for="category-select" class="block text-sm font-semibold text-gray-700 mb-1">Category</label>
-                        <select id="category-select" class="w-full py-3 border border-gray-200 rounded-lg bg-gray-50 text-gray-700 focus:ring-blue-500 focus:border-blue-500 appearance-none">
-                            <option value="" disabled selected>Select a category...</option>
-                        </select>
-                    </div>
-                    </div>
-            
-                <button type="submit" class="w-full py-3 mt-6 text-white font-bold rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transition-colors">Submit</button>
-            </form>
+                </form>
 
         </div>
     </div>
     
-    <div class="fixed bottom-4 right-4 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl shadow-lg bg-gradient-to-r from-blue-400 to-blue-600 cursor-pointer">&#x1F4AC;</div>
-
-    <div id="auth-modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-        
-        <div id="auth-modal" class="bg-white rounded-xl shadow-2xl p-6 w-11/12 max-w-sm relative">
-            
-            <button id="close-modal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
-
-            <div id="login-form-container" class="auth-form hidden">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In</h3>
-                <form>
-                    <div class="mb-4">
-                        <label for="login-username" class="block text-sm font-semibold text-gray-700 mb-1">Username or Email</label>
-                        <input type="text" id="login-username" placeholder="Enter your username or email" class="w-full py-3 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="mb-6">
-                        <label for="login-password" class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
-                        <input type="password" id="login-password" placeholder="Enter your password" class="w-full py-3 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <button type="submit" class="w-full py-3 text-white font-bold rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transition-colors">Login</button>
-                    <p class="text-center text-sm text-gray-500 mt-4">
-                        Don't have an account? 
-                        <a href="#" id="switch-to-register" class="text-blue-500 font-semibold hover:text-blue-700">Register Now</a>
-                    </p>
-                </form>
-            </div>
-            
-            <div id="register-form-container" class="auth-form hidden">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Create Account</h3>
-                <form>
-                    <div class="mb-4">
-                        <label for="register-email" class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
-                        <input type="email" id="register-email" placeholder="Enter your email" class="w-full py-3 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="mb-4">
-                        <label for="register-password" class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
-                        <input type="password" id="register-password" placeholder="Create a password" class="w-full py-3 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="mb-6">
-                        <label for="register-confirm-password" class="block text-sm font-semibold text-gray-700 mb-1">Confirm Password</label>
-                        <input type="password" id="register-confirm-password" placeholder="Confirm your password" class="w-full py-3 border border-gray-200 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <button type="submit" class="w-full py-3 text-white font-bold rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transition-colors">Register</button>
-                    <p class="text-center text-sm text-gray-500 mt-4">
-                        Already have an account? 
-                        <a href="#" id="switch-to-login" class="text-blue-500 font-semibold hover:text-blue-700">Login Here</a>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <script src="code.js"></script>
 </body>
 </html>
