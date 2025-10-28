@@ -1,355 +1,174 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Kit</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <style id="dynamic-styles">
-    :root { 
-        /* Login Page Colors */
-        --login-hero-bg: #00aaff;
-        --login-hero-text: #ffffff;
-        --login-card-bg: #ffffff;
-        --login-card-text: #2c3e50;
-        --login-btn-bg: #00aaff;
-        --login-btn-text: #ffffff;
-        --login-link-color: #00aaff;
-
-        /* Main Panel Colors */
-        --panel-body-bg: linear-gradient(to bottom, #43c6ac, #191654);
-        --panel-header-text: #ffffff;
-        --panel-sidebar-bg: #191654;
-        --panel-sidebar-text: #ffffff;
-        --panel-card-bg: #ffffff;
-        --panel-card-text: #333333;
-        --panel-stat-value: #2c3e50;
-        --panel-stat-label: #555555;
-        --panel-input-bg: #f0f4f8;
-        --panel-button-bg: #29b6f6;
-        --panel-button-text: #ffffff;
-
-        /* Orders Page Status Colors */
-        --order-pending: #ff9800;
-        --order-completed: #4caf50;
-        --order-processing: #2196f3;
-        --order-canceled: #f44336;
-        
-        /* Transfer Funds Colors */
-        --transfer-bg: linear-gradient(to bottom, #2dd4bf, #06b6d4);
-        --transfer-container-bg: #ffffff;
-        --transfer-text-color: #0f766e;
-        --transfer-btn-bg: #2dd4bf;
-
-
-        /* Child Panel Colors */
-        --cp-grad-start: #43c6ac;
-        --cp-grad-end: #191654;
-        --cp-container-bg: #ffffff;
-        --cp-btn-bg: #007bff;
-        --cp-btn-active-bg: #0056b3;
-        --cp-text: #333333;
-    }
-  </style>
-  <style id="static-styles">
-    /* ... Keep all the existing static CSS styles here ... */
-
-    /* Add specific styles for the button grid to match the new design aesthetic */
-    .category-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
-        gap: 15px; /* Spacing between buttons */
-        padding: 15px 0;
-        margin: 0 auto 20px auto;
-    }
-    .category-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 15px 5px;
-        background: #ffffff; /* White background for the buttons */
-        color: var(--panel-card-text); /* Dark text color */
-        border: 1px solid #e0e0e0; /* Light border */
-        border-radius: 12px; /* Rounded corners to match design */
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 500;
-        text-align: center;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .category-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-    .category-icon {
-        width: 35px; /* Icon size */
-        height: 35px;
-        margin-bottom: 5px;
-    }
-    
-    /* ... The rest of your existing static CSS styles go here ... */
-    
-    body { margin:0; font-family: 'Poppins', sans-serif; background: var(--panel-body-bg); color: var(--dark-text); overflow-x:hidden; } .hidden { display:none; }
-    /* ... (The rest of the Smart Kit Static CSS is here) ... */
-    /* Custom styles for FAQ text to be black */
-    .faq-question {
-        color: #000000 !important; /* Force black for questions */
-    }
-    .faq-answer p {
-        color: #000000 !important; /* Force black for answer text */
-    }
-    
-    /* Verified Tick Styles */
-    .verified-tick {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        margin-left: 4px;
-        vertical-align: middle;
-        flex-shrink: 0;
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-
-    /* Transfer Funds Page Styles */
-    #transferFundsScreen {
-        background: var(--transfer-bg);
-        padding: 20px;
-        min-height: 100vh;
-        box-sizing: border-box;
-    }
-    .transfer-funds-container {
-        max-width: 500px;
-        margin: 40px auto;
-        background: var(--transfer-container-bg);
-        color: var(--transfer-text-color);
-        padding: 30px 25px;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    .transfer-funds-container h2 {
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 1.2;
-        margin: 0 0 10px 0;
-        color: var(--transfer-text-color);
-    }
-    .transfer-funds-container p {
-        margin: 0 0 30px 0;
-        font-size: 15px;
-        opacity: 0.9;
-    }
-    .transfer-funds-container label {
-        display: block;
-        text-align: left;
-        font-weight: 600;
-        margin-bottom: 8px;
-        font-size: 14px;
-    }
-    .transfer-funds-container input {
-        width: 100%;
-        padding: 14px;
-        border-radius: 12px;
-        border: 1px solid rgba(0,0,0,0.1);
-        background-color: #f0fdfa;
-        font-size: 16px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-    }
-    .transfer-funds-container .btn {
-        width: 100%;
-        padding: 15px;
-        border-radius: 12px;
-        border: none;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: opacity 0.2s;
-    }
-     .transfer-funds-container .btn:hover {
-        opacity: 0.9;
-     }
-    .transfer-btn {
-        background-color: var(--transfer-btn-bg);
-        color: white;
-    }
-    .support-center-btn {
-        background-color: transparent;
-        color: var(--transfer-text-color);
-        border: 2px solid var(--transfer-btn-bg);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Kit Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-    <div id="loginScreen" class="hidden">
-        </div>
 
-    <div id="appScreen">
-        
-        <header class="header">
-            <div class="logo">Smart Kit 👑</div>
-            <div class="menu-btn" onclick="openNav()">☰</div>
-        </header>
+    <header class="header">
+        <h1>Smart Kit <span class="emoji">&#x1F9E9;</span></h1>
+    </header>
 
-        <div id="mySidebar" class="sidebar">
-            <div class="sidebar-balance">
-                Balance: ₹0.00
-                <span class="close-btn" onclick="closeNav()">×</span>
+    <div class="main-content-wrapper">
+        <div class="main-content">
+            
+            <div class="user-stats-cards">
+                <div class="glass-card stat-card user-info-card">
+                    <div class="card-content">
+                        <img src="https://i.ibb.co/L8y2Nf3/avatar-placeholder.png" alt="User Avatar" class="card-icon avatar">
+                        <div>
+                            <strong>rrrosl5</strong> <span class="verified-icon">&#x2713;</span>
+                            <p class="subtitle">Welcome to Smart Kit</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="glass-card stat-card">
+                    <div class="card-content">
+                        <img src="https://i.ibb.co/hR2kR6x/spent-icon.png" alt="Total Spent Icon" class="card-icon">
+                        <div>
+                            <strong>&#x20B9;0.00</strong>
+                            <p class="subtitle">Total Spent</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="glass-card stat-card">
+                    <div class="card-content">
+                        <img src="https://i.ibb.co/6P2L27F/orders-icon.png" alt="Total Orders Icon" class="card-icon">
+                        <div>
+                            <strong>&#x20B9;0</strong>
+                            <p class="subtitle">Total Orders</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="glass-card stat-card">
+                    <div class="card-content">
+                        <img src="https://i.ibb.co/yY1h290/balance-icon.png" alt="Total Balance Icon" class="card-icon">
+                        <div>
+                            <strong>&#x20B9;0.00</strong>
+                            <p class="subtitle">Total Balance</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a onclick="showScreen('home')">🏠 New Order</a>
-            <a onclick="showScreen('orders')">📦 Orders</a>
-            <a onclick="showScreen('addBalanceScreen')">💰 Add Balance</a>
-            <a onclick="showScreen('supportScreen')">💬 Support</a>
-            <a onclick="showScreen('apiScreen')">⚙️ API</a>
-            <a onclick="showScreen('accountScreen')">👤 Account</a>
-            <a onclick="logout()">➡️ Logout</a>
-        </div>
-        
-        <main id="home" class="page-content">
-            <div class="home-container">
-                
-                <div class="welcome-card-new">
-                    <img src="path/to/icon.png" alt="Icon"> <div class="text">
-                        <h3>Welcome Back!</h3>
-                        <p>Total Spent: ₹0.00</p>
-                    </div>
+            
+            <hr class="divider">
+            
+            <section id="categories" class="container">
+                <h2>Select Your Category</h2>
+                <div class="category-grid glass-card">
+                    <button class="category-item" data-category="facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        <span>Facebook</span>
+                    </button>
+                    <button class="category-item" data-category="instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <span>Instagram</span>
+                    </button>
+                    <button class="category-item" data-category="tiktok">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        <span>TikTok</span>
+                    </button>
+                    <button class="category-item" data-category="youtube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 5l-7 7 7 7"></path></svg>
+                        <span>YouTube</span>
+                    </button>
+                    <button class="category-item" data-category="twitter">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c11 3 21 0 21-11.19v-1a4.8 4.8 0 0 0 1-1.29z"></path></svg>
+                        <span>Twitter</span>
+                    </button>
+                    <button class="category-item" data-category="spotify">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+                        <span>Spotify</span>
+                    </button>
+                    <button class="category-item" data-category="snapchat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="15" x2="16" y2="15"></line></svg>
+                        <span>SnapChat</span>
+                    </button>
+                    <button class="category-item" data-category="linkedin">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="category-item" data-category="telegram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"></path></svg>
+                        <span>Telegram</span>
+                    </button>
+                    <button class="category-item" data-category="discord">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="2"></rect></svg>
+                        <span>Discord</span>
+                    </button>
+                    <button class="category-item" data-category="twitch">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1H7a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4z"></path><line x1="8" y1="10" x2="8.01" y2="10"></line><line x1="16" y1="10" x2="16.01" y2="10"></line></svg>
+                        <span>Twitch</span>
+                    </button>
+                    <button class="category-item" data-category="traffic">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Traffic</span>
+                    </button>
+                    <button class="category-item" data-category="reviews">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span>Reviews</span>
+                    </button>
+                    <button class="category-item" data-category="google">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Google</span>
+                    </button>
                 </div>
+            </section>
+            
+            <form id="order-form" class="glass-card">
+                
+                <div class="form-group search-bar">
+                    <span class="icon">&#x1F50D;</span>
+                    <input type="text" id="service-search" placeholder="Search Services...">
+                </div>
+            
+                <div class="form-group">
+                    <label for="category-select">Category</label>
+                    <select id="category-select" required>
+                        <option value="" disabled selected>Select a category...</option>
+                        </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="service-select">Services</label>
+                    <select id="service-select" required>
+                        <option value="" disabled selected>Select a service...</option>
+                        </select>
+                </div>
+            
+                <div class="form-group">
+                    <label for="average-time">Average Time</label>
+                    <input type="text" id="average-time" value="N/A" disabled>
+                </div>
+            
+                <div class="form-group">
+                    <label for="link-input">Link</label>
+                    <input type="url" id="link-input" placeholder="Enter your link" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="quantity-input">Quantity</label>
+                    <input type="number" id="quantity-input" value="1000" min="100" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="charge-input">Charge</label>
+                    <input type="text" id="charge-input" value="&#x20B9;0.00" disabled>
+                </div>
+            
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
 
-                <div class="stats-grid-new">
-                    <div class="stat-item-new">
-                        <img src="path/to/money_icon.png" alt="Money Icon"> <div class="info">
-                            <div class="value">₹0.00</div>
-                            <div class="label">Total Spent</div>
-                        </div>
-                    </div>
-                    <div class="stat-item-new">
-                        <img src="path/to/order_icon.png" alt="Order Icon"> <div class="info">
-                            <div class="value">0</div>
-                            <div class="label">Total Orders</div>
-                        </div>
-                    </div>
-                    <div class="stat-item-new">
-                        <img src="path/to/balance_icon.png" alt="Balance Icon"> <div class="info">
-                            <div class="value">₹0.00</div>
-                            <div class="label">Total Balance</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-box-new">
-                    <h4>Select Your Category</h4>
-                    <div class="category-grid">
-                        <a href="#" class="category-btn">
-                            <img src="path/to/facebook_icon.png" alt="Facebook" class="category-icon"> Facebook
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/instagram_icon.png" alt="Instagram" class="category-icon"> Instagram
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/tiktok_icon.png" alt="TikTok" class="category-icon"> TikTok
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/youtube_icon.png" alt="YouTube" class="category-icon"> YouTube
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/twitter_icon.png" alt="Twitter/X" class="category-icon"> Twitter/X
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/spotify_icon.png" alt="Spotify" class="category-icon"> Spotify
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/snapchat_icon.png" alt="SnapChat" class="category-icon"> SnapChat
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/linkedin_icon.png" alt="LinkedIn" class="category-icon"> LinkedIn
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/telegram_icon.png" alt="Telegram" class="category-icon"> Telegram
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/discord_icon.png" alt="Discord" class="category-icon"> Discord
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/twitch_icon.png" alt="Twitch" class="category-icon"> Twitch
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/traffic_icon.png" alt="Traffic" class="category-icon"> Traffic
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/reviews_icon.png" alt="Reviews" class="category-icon"> Reviews
-                        </a>
-                        <a href="#" class="category-btn">
-                            <img src="path/to/google_icon.png" alt="Google" class="category-icon"> Google
-                        </a>
-                    </div>
-                </div>
-                
-                </div>
-        </main>
-        
-        <div id="ordersScreen" class="page-content hidden">...</div>
-        <div id="addBalanceScreen" class="page-content hidden">...</div>
-        <div id="supportScreen" class="page-content hidden">...</div>
-        <div id="apiScreen" class="page-content hidden">...</div>
-        <div id="accountScreen" class="page-content hidden">...</div>
-        <div id="childPanelScreen" class="page-content hidden">...</div>
-        
+        </div>
     </div>
     
-    <script>
-        function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
-        }
-        
-        function showScreen(screenId) {
-            // Hide all main screens
-            document.querySelectorAll('.page-content').forEach(screen => {
-                screen.classList.add('hidden');
-            });
-            // Show the selected screen
-            document.getElementById(screenId).classList.remove('hidden');
-            closeNav(); // Close sidebar after selecting a screen
-        }
-
-        // Initial setup to show the main app screen and hide the login
-        document.addEventListener('DOMContentLoaded', () => {
-             // Assuming the user is logged in, show the main app screen
-             document.getElementById('appScreen').classList.remove('hidden'); 
-             document.getElementById('loginScreen').classList.add('hidden');
-             showScreen('home'); // Show the home/new order screen by default
-        });
-
-        // Add dummy functions for your buttons/links (you will replace these later)
-        function login() { /* Your login logic */ }
-        function forgotPassword() { /* Your forgot password logic */ }
-        function showSignUp() { /* Your sign up UI logic */ }
-        function showLogin() { /* Your login UI logic */ }
-        function register() { /* Your registration logic */ }
-        function googleLogin() { /* Your Google login logic */ }
-        function logout() { 
-            // Example logout logic (hides app, shows login)
-            document.getElementById('appScreen').classList.add('hidden');
-            document.getElementById('loginScreen').classList.remove('hidden');
-        }
-
-        // Add event listeners for the accordion elements on the login screen
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.closest('.faq-item');
-                item.classList.toggle('active');
-            });
-        });
-    </script>
-    
+    <script src="code.js"></script>
 </body>
 </html>
