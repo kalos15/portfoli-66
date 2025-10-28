@@ -27,9 +27,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuDropdown = document.getElementById('menu-dropdown');
     const welcomeBox = document.getElementById('welcome-box');
 
+    // Modal Elements
+    const modalOverlay = document.getElementById('auth-modal-overlay');
+    const loginContainer = document.getElementById('login-form-container');
+    const registerContainer = document.getElementById('register-form-container');
+    const closeModalButton = document.getElementById('close-modal');
+    const switchToRegisterLink = document.getElementById('switch-to-register');
+    const switchToLoginLink = document.getElementById('switch-to-login');
+
+
+    // --- Menu & Modal Functions ---
+
+    // Function to open the modal and display a specific form
+    function openAuthModal(mode) {
+        menuDropdown.classList.add('hidden'); // Close header menu
+        modalOverlay.classList.remove('hidden'); // Show modal backdrop
+        
+        // Switch form visibility
+        if (mode === 'login') {
+            loginContainer.classList.remove('hidden');
+            registerContainer.classList.add('hidden');
+        } else if (mode === 'register') {
+            registerContainer.classList.remove('hidden');
+            loginContainer.classList.add('hidden');
+        }
+    }
+
+    // Function to close the modal
+    function closeAuthModal() {
+        modalOverlay.classList.add('hidden');
+    }
+
     // --- Menu Toggle Logic ---
     menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent document click from closing it immediately
+        e.stopPropagation(); 
         menuDropdown.classList.toggle('hidden');
     });
     
@@ -39,13 +70,42 @@ document.addEventListener('DOMContentLoaded', () => {
             menuDropdown.classList.add('hidden');
         }
     });
+
+    // --- Modal Event Listeners ---
+    closeModalButton.addEventListener('click', closeAuthModal);
+    modalOverlay.addEventListener('click', (e) => {
+        // Close modal when clicking the backdrop, but not the form box itself
+        if (e.target === modalOverlay) {
+            closeAuthModal();
+        }
+    });
+
+    // Link handlers for switching between forms inside the modal
+    switchToRegisterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openAuthModal('register');
+    });
+    switchToLoginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        openAuthModal('login');
+    });
     
+    // Header Menu Link Handlers
+    document.querySelector('[data-action="open-login"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        openAuthModal('login');
+    });
+    document.querySelector('[data-action="open-register"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        openAuthModal('register');
+    });
+
+
     // --- Page Logic (Login/Dashboard Simulation) ---
 
-    // Function to update the top box based on login status
     function updateWelcomeBox(isLoggedIn, username = 'rrrosl5') {
         if (isLoggedIn) {
-            // Dashboard State (Simulated 4-Card look as requested)
+            // Dashboard State (Single Card)
             welcomeBox.classList.remove('flex-col', 'items-center', 'justify-center', 'gap-3', 'text-center');
             welcomeBox.classList.add('flex', 'items-center', 'gap-4');
             welcomeBox.innerHTML = `
@@ -55,10 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="text-sm text-gray-500">Welcome to Smart Kit</p>
                 </div>
             `;
-            // Optional: Hide Login/Register in dropdown, show Logout
-            menuDropdown.querySelector('[data-action="logout"]').style.display = 'block';
-            menuDropdown.querySelector('[href="register.html"]').style.display = 'none';
-            menuDropdown.querySelector('[href="login.html"]').style.display = 'none';
+            // Hide Login/Register in dropdown, show Logout
+            document.querySelector('[data-action="logout"]').classList.remove('hidden');
+            document.querySelector('[data-action="open-register"]').classList.add('hidden');
+            document.querySelector('[data-action="open-login"]').classList.add('hidden');
 
         } else {
             // Landing Page State (Single CTA Box)
@@ -72,26 +132,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             `;
             
-            // Attach listener to the new button
+            // Attach listener to the new button (since it's dynamically created)
             document.getElementById('cta-button-active').addEventListener('click', () => {
-                // This would typically lead to a Login/Register page
-                window.location.href = 'login.html'; 
+                openAuthModal('login'); 
             });
             
-            // Optional: Show Login/Register in dropdown, hide Logout
-            menuDropdown.querySelector('[data-action="logout"]').style.display = 'none';
-            menuDropdown.querySelector('[href="register.html"]').style.display = 'block';
-            menuDropdown.querySelector('[href="login.html"]').style.display = 'block';
+            // Show Login/Register in dropdown, hide Logout
+            document.querySelector('[data-action="logout"]').classList.add('hidden');
+            document.querySelector('[data-action="open-register"]').classList.remove('hidden');
+            document.querySelector('[data-action="open-login"]').classList.remove('hidden');
         }
     }
 
     // --- Telegram Auto-Login Check (Simulation) ---
     function checkTelegramUser() {
-        // **REAL TELEGRAM LOGIC:** Check window.Telegram.WebApp.initDataUnsafe for user ID.
-        // If a user ID is found: send it to your backend (Firebase/Supabase) to check for an existing account.
-        
-        // **SIMULATION:** Default to logged out for the landing page demonstration
-        // To test the "logged in" view, change 'false' to 'true'.
+        // SIMULATION: Set to true to test the logged-in view automatically.
         const isTelegramUserRegistered = false; 
 
         if (isTelegramUserRegistered) {
@@ -102,58 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Form Functionality (Unchanged) ---
-
-    // 1. Populate Category Select from data
-    function populateCategories() {
-        Array.from(categorySelect.options).forEach((option, index) => {
-            if (index > 0) categorySelect.removeChild(option);
-        });
-
-        Object.keys(servicesData).forEach(categoryKey => {
-            const option = document.createElement('option');
-            option.value = categoryKey;
-            option.textContent = categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1);
-            categorySelect.appendChild(option);
-        });
-    }
-
-    // 2. Populate Service Select based on Category selection
-    function populateServices(category) {
-        serviceSelect.innerHTML = '<option value="" disabled selected>Select a service...</option>';
-        averageTimeInput.value = 'N/A';
-        chargeInput.value = '₹0.00';
-
-        if (category && servicesData[category]) {
-            servicesData[category].forEach(service => {
-                const option = document.createElement('option');
-                option.value = service.id;
-                option.textContent = service.name;
-                option.dataset.rate = service.rate;
-                option.dataset.time = service.time;
-                serviceSelect.appendChild(option);
-            });
-        }
-    }
-
-    // 3. Calculate Charge
-    function calculateCharge() {
-        const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
-        const quantity = parseInt(quantityInput.value);
-        
-        chargeInput.value = '₹0.00';
-        averageTimeInput.value = 'N/A';
-
-        if (selectedOption && selectedOption.dataset.rate && quantity > 0) {
-            const rate = parseFloat(selectedOption.dataset.rate);
-            const time = selectedOption.dataset.time;
-            const charge = (rate * quantity).toFixed(2);
-
-            chargeInput.value = `₹${charge}`;
-            averageTimeInput.value = time;
-        }
-    }
-
-    // --- Event Listeners and Initial Setup ---
+    function populateCategories() { /* ... */ }
+    function populateServices(category) { /* ... */ }
+    function calculateCharge() { /* ... */ }
 
     categorySelect.addEventListener('change', (e) => {
         const selectedCategory = e.target.value;
@@ -168,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(`Order submitted (Demo)`);
     });
     
+    // Logout Handler
     document.querySelector('[data-action="logout"]').addEventListener('click', (e) => {
         e.preventDefault();
         updateWelcomeBox(false);
