@@ -21,9 +21,87 @@ document.addEventListener('DOMContentLoaded', () => {
     const quantityInput = document.getElementById('quantity-input');
     const chargeInput = document.getElementById('charge-input');
     const averageTimeInput = document.getElementById('average-time');
-    // const categoryButtons = document.querySelectorAll('.category-item'); // Uncomment if you need button functionality
+    
+    // New Menu and CTA Elements
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuDropdown = document.getElementById('menu-dropdown');
+    const welcomeBox = document.getElementById('welcome-box');
 
-    // --- Functions ---
+    // --- Menu Toggle Logic ---
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent document click from closing it immediately
+        menuDropdown.classList.toggle('hidden');
+    });
+    
+    // Close menu if clicked outside
+    document.addEventListener('click', (e) => {
+        if (!menuDropdown.contains(e.target) && e.target !== menuToggle) {
+            menuDropdown.classList.add('hidden');
+        }
+    });
+    
+    // --- Page Logic (Login/Dashboard Simulation) ---
+
+    // Function to update the top box based on login status
+    function updateWelcomeBox(isLoggedIn, username = 'rrrosl5') {
+        if (isLoggedIn) {
+            // Dashboard State (Simulated 4-Card look as requested)
+            welcomeBox.classList.remove('flex-col', 'items-center', 'justify-center', 'gap-3', 'text-center');
+            welcomeBox.classList.add('flex', 'items-center', 'gap-4');
+            welcomeBox.innerHTML = `
+                <img src="https://i.ibb.co/L8y2Nf3/avatar-placeholder.png" alt="User Avatar" class="w-10 h-10 rounded-full">
+                <div>
+                    <strong class="font-semibold text-gray-900">${username}</strong> <span class="text-blue-500">&#x2713;</span>
+                    <p class="text-sm text-gray-500">Welcome to Smart Kit</p>
+                </div>
+            `;
+            // Optional: Hide Login/Register in dropdown, show Logout
+            menuDropdown.querySelector('[data-action="logout"]').style.display = 'block';
+            menuDropdown.querySelector('[href="register.html"]').style.display = 'none';
+            menuDropdown.querySelector('[href="login.html"]').style.display = 'none';
+
+        } else {
+            // Landing Page State (Single CTA Box)
+            welcomeBox.classList.add('flex-col', 'items-center', 'justify-center', 'gap-3', 'text-center');
+            welcomeBox.classList.remove('flex', 'items-center', 'gap-4');
+            welcomeBox.innerHTML = `
+                <p class="text-lg font-semibold text-gray-900">Get Started Now</p>
+                <p class="text-sm text-gray-500">Log in or Register to manage your social media services and orders.</p>
+                <button id="cta-button-active" class="w-2/3 py-2 text-white font-bold rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 transition-colors">
+                    Login or Register
+                </button>
+            `;
+            
+            // Attach listener to the new button
+            document.getElementById('cta-button-active').addEventListener('click', () => {
+                // This would typically lead to a Login/Register page
+                window.location.href = 'login.html'; 
+            });
+            
+            // Optional: Show Login/Register in dropdown, hide Logout
+            menuDropdown.querySelector('[data-action="logout"]').style.display = 'none';
+            menuDropdown.querySelector('[href="register.html"]').style.display = 'block';
+            menuDropdown.querySelector('[href="login.html"]').style.display = 'block';
+        }
+    }
+
+    // --- Telegram Auto-Login Check (Simulation) ---
+    function checkTelegramUser() {
+        // **REAL TELEGRAM LOGIC:** Check window.Telegram.WebApp.initDataUnsafe for user ID.
+        // If a user ID is found: send it to your backend (Firebase/Supabase) to check for an existing account.
+        
+        // **SIMULATION:** Default to logged out for the landing page demonstration
+        // To test the "logged in" view, change 'false' to 'true'.
+        const isTelegramUserRegistered = false; 
+
+        if (isTelegramUserRegistered) {
+            updateWelcomeBox(true, 'rrrosl5'); 
+        } else {
+            updateWelcomeBox(false); 
+        }
+    }
+
+    // --- Form Functionality (Unchanged) ---
 
     // 1. Populate Category Select from data
     function populateCategories() {
@@ -75,26 +153,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Event Listeners ---
+    // --- Event Listeners and Initial Setup ---
 
-    // Category Dropdown change event
     categorySelect.addEventListener('change', (e) => {
         const selectedCategory = e.target.value;
         populateServices(selectedCategory);
     });
-
-    // Service Dropdown change event
     serviceSelect.addEventListener('change', calculateCharge);
-
-    // Quantity Input change event
     quantityInput.addEventListener('input', calculateCharge);
-
-    // Initial setup
-    populateCategories();
-
+    
     // Prevent form submission for this demo
     document.getElementById('order-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        alert(`Order submitted for ${quantityInput.value} units at a charge of ${chargeInput.value}.`);
+        alert(`Order submitted (Demo)`);
     });
+    
+    document.querySelector('[data-action="logout"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        updateWelcomeBox(false);
+        menuDropdown.classList.add('hidden');
+        alert("Logged out successfully (Demo).");
+    });
+    
+    // Run on load
+    populateCategories();
+    checkTelegramUser(); // Start the auto-login check
 });
