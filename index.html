@@ -1,361 +1,355 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>follow.by | Real Growth Managed from Telegram</title>
-    <meta name="description" content="Buy followers, likes, views, and comments securely via Telegram. Professional SMM services for all major platforms.">
-    <meta name="keywords" content="SMM, followers, likes, Telegram bot, social media marketing, follow.by">
-    <meta property="og:title" content="follow.by | Real Growth Managed from Telegram">
-    <meta property="og:description" content="Secure SMM purchases handled directly in Telegram.">
-    <meta property="og:type" content="website">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script>const TELEGRAM_BOT_USERNAME = 'YOUR_TELEGRAM_BOT_USERNAME';</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style id="dynamic-styles">
+    :root { 
+        /* Login Page Colors */
+        --login-hero-bg: #00aaff;
+        --login-hero-text: #ffffff;
+        --login-card-bg: #ffffff;
+        --login-card-text: #2c3e50;
+        --login-btn-bg: #00aaff;
+        --login-btn-text: #ffffff;
+        --login-link-color: #00aaff;
+
+        /* Main Panel Colors */
+        --panel-body-bg: linear-gradient(to bottom, #43c6ac, #191654);
+        --panel-header-text: #ffffff;
+        --panel-sidebar-bg: #191654;
+        --panel-sidebar-text: #ffffff;
+        --panel-card-bg: #ffffff;
+        --panel-card-text: #333333;
+        --panel-stat-value: #2c3e50;
+        --panel-stat-label: #555555;
+        --panel-input-bg: #f0f4f8;
+        --panel-button-bg: #29b6f6;
+        --panel-button-text: #ffffff;
+
+        /* Orders Page Status Colors */
+        --order-pending: #ff9800;
+        --order-completed: #4caf50;
+        --order-processing: #2196f3;
+        --order-canceled: #f44336;
+        
+        /* Transfer Funds Colors */
+        --transfer-bg: linear-gradient(to bottom, #2dd4bf, #06b6d4);
+        --transfer-container-bg: #ffffff;
+        --transfer-text-color: #0f766e;
+        --transfer-btn-bg: #2dd4bf;
+
+
+        /* Child Panel Colors */
+        --cp-grad-start: #43c6ac;
+        --cp-grad-end: #191654;
+        --cp-container-bg: #ffffff;
+        --cp-btn-bg: #007bff;
+        --cp-btn-active-bg: #0056b3;
+        --cp-text: #333333;
+    }
+  </style>
+  <style id="static-styles">
+    /* ... Keep all the existing static CSS styles here ... */
+
+    /* Add specific styles for the button grid to match the new design aesthetic */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+        gap: 15px; /* Spacing between buttons */
+        padding: 15px 0;
+        margin: 0 auto 20px auto;
+    }
+    .category-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 5px;
+        background: #ffffff; /* White background for the buttons */
+        color: var(--panel-card-text); /* Dark text color */
+        border: 1px solid #e0e0e0; /* Light border */
+        border-radius: 12px; /* Rounded corners to match design */
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .category-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .category-icon {
+        width: 35px; /* Icon size */
+        height: 35px;
+        margin-bottom: 5px;
+    }
+    
+    /* ... The rest of your existing static CSS styles go here ... */
+    
+    body { margin:0; font-family: 'Poppins', sans-serif; background: var(--panel-body-bg); color: var(--dark-text); overflow-x:hidden; } .hidden { display:none; }
+    /* ... (The rest of the Smart Kit Static CSS is here) ... */
+    /* Custom styles for FAQ text to be black */
+    .faq-question {
+        color: #000000 !important; /* Force black for questions */
+    }
+    .faq-answer p {
+        color: #000000 !important; /* Force black for answer text */
+    }
+    
+    /* Verified Tick Styles */
+    .verified-tick {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-left: 4px;
+        vertical-align: middle;
+        flex-shrink: 0;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Transfer Funds Page Styles */
+    #transferFundsScreen {
+        background: var(--transfer-bg);
+        padding: 20px;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    .transfer-funds-container {
+        max-width: 500px;
+        margin: 40px auto;
+        background: var(--transfer-container-bg);
+        color: var(--transfer-text-color);
+        padding: 30px 25px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .transfer-funds-container h2 {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0 0 10px 0;
+        color: var(--transfer-text-color);
+    }
+    .transfer-funds-container p {
+        margin: 0 0 30px 0;
+        font-size: 15px;
+        opacity: 0.9;
+    }
+    .transfer-funds-container label {
+        display: block;
+        text-align: left;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .transfer-funds-container input {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        background-color: #f0fdfa;
+        font-size: 16px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+    .transfer-funds-container .btn {
+        width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+        border: none;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: opacity 0.2s;
+    }
+     .transfer-funds-container .btn:hover {
+        opacity: 0.9;
+     }
+    .transfer-btn {
+        background-color: var(--transfer-btn-bg);
+        color: white;
+    }
+    .support-center-btn {
+        background-color: transparent;
+        color: var(--transfer-text-color);
+        border: 2px solid var(--transfer-btn-bg);
+    }
+  </style>
 </head>
-<body class="light-mode">
-    <div id="stars-container"></div>
-    <header>
-        <div class="container nav-content">
-            <div class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 10L17 6M17 6L13 2M17 6L11 12M5 13L9 17M9 17L5 21M9 17L15 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <a href="/" class="wordmark">follow.by</a>
-            </div>
-            <nav>
-                <a href="#features">Features</a>
-                <a href="#packages">Pricing</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#faq">FAQ</a>
-                <a href="https://t.me/followbysupport" target="_blank" rel="noopener noreferrer">Support</a>
-                <button id="mode-toggle" aria-label="Toggle dark/light mode">🌙</button>
-            </nav>
+<body>
+  
+    <div id="loginScreen" class="hidden">
         </div>
-    </header>
 
-    <main>
-        <section id="hero" class="hero">
-            <div class="container">
-                <h1>Real growth, managed from **Telegram**</h1>
-                <p class="subtitle">Buy followers · likes · views · comments — **secure payments inside Telegram** (Stars or Bot's option).</p>
-                <div class="hero-actions">
-                    <button class="cta-primary" id="open-telegram-btn">Open in Telegram</button>
-                    <a href="#packages" class="cta-secondary">View Packages</a>
-                </div>
-                <p class="compliance-note">We do not condone violating platform terms. Use responsibly.</p>
+    <div id="appScreen">
+        
+        <header class="header">
+            <div class="logo">Smart Kit 👑</div>
+            <div class="menu-btn" onclick="openNav()">☰</div>
+        </header>
+
+        <div id="mySidebar" class="sidebar">
+            <div class="sidebar-balance">
+                Balance: ₹0.00
+                <span class="close-btn" onclick="closeNav()">×</span>
             </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="user-stats" class="container stats-grid">
-             <div class="stat-card glass-card">
-                <div class="stat-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </div>
-                <div class="stat-info">
-                    <p class="stat-value">rrrros15</p>
-                    <p class="stat-label">Welcome to follow.by</p>
-                </div>
-            </div>
-            <div class="stat-card glass-card">
-                <div class="stat-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                </div>
-                <div class="stat-info">
-                    <p class="stat-value">₹0.00</p>
-                    <p class="stat-label">Total Spent</p>
-                </div>
-            </div>
-            <div class="stat-card glass-card">
-                <div class="stat-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                </div>
-                <div class="stat-info">
-                    <p class="stat-value">0</p>
-                    <p class="stat-label">Total Orders</p>
-                </div>
-            </div>
-            <div class="stat-card glass-card">
-                <div class="stat-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                </div>
-                <div class="stat-info">
-                    <p class="stat-value">₹0.00</p>
-                    <p class="stat-label">Total Balance</p>
-                </div>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="categories" class="container">
-            <h2>Select Your Category</h2>
-            <div class="category-grid glass-card">
-                <button class="category-item" data-category="facebook">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    <span>Facebook</span>
-                </button>
-                <button class="category-item" data-category="instagram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    <span>Instagram</span>
-                </button>
-                <button class="category-item" data-category="tiktok">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                    <span>TikTok</span>
-                </button>
-                <button class="category-item" data-category="youtube">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M12 5l-7 7 7 7"></path></svg>
-                    <span>YouTube</span>
-                </button>
-                <button class="category-item" data-category="twitter">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c11 3 21 0 21-11.19v-1a4.8 4.8 0 0 0 1-1.29z"></path></svg>
-                    <span>Twitter</span>
-                </button>
-                <button class="category-item" data-category="spotify">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
-                    <span>Spotify</span>
-                </button>
-                <button class="category-item" data-category="snapchat">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="15" x2="16" y2="15"></line></svg>
-                    <span>SnapChat</span>
-                </button>
-                <button class="category-item" data-category="linkedin">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    <span>LinkedIn</span>
-                </button>
-                <button class="category-item" data-category="telegram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"></path></svg>
-                    <span>Telegram</span>
-                </button>
-                <button class="category-item" data-category="discord">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="2"></rect></svg>
-                    <span>Discord</span>
-                </button>
-                <button class="category-item" data-category="twitch">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1H7a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4z"></path><line x1="8" y1="10" x2="8.01" y2="10"></line><line x1="16" y1="10" x2="16.01" y2="10"></line></svg>
-                    <span>Twitch</span>
-                </button>
-                <button class="category-item" data-category="traffic">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    <span>Traffic</span>
-                </button>
-                <button class="category-item" data-category="reviews">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span>Reviews</span>
-                </button>
-                <button class="category-item" data-category="google">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    <span>Google</span>
-                </button>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="features" class="container">
-            <h2>Why Choose follow.by?</h2>
-            <div class="features-grid">
-                <div class="feature-card glass-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    <h3>Instant Fulfillment</h3>
-                    <p>Orders start processing within minutes of payment confirmation.</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    <h3>Telegram Secure Pay</h3>
-                    <p>Pay with Telegram Stars or the bot’s payment method for max security.</p>
-                </div>
-                <div class="feature-card glass-card">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
-                    <h3>24/7 Dedicated Support</h3>
-                    <p>Our team is available around the clock via Telegram to assist you.</p>
-                </div>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="packages" class="container">
-            <h2>Affordable Growth Packages</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card glass-card">
-                    <h3>Starter</h3>
-                    <p class="price">Starts at $5</p>
-                    <p class="description">Perfect for new profiles and small campaigns.</p>
-                    <ul>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 1,000 interactions</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard speed delivery</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Basic support</li>
-                    </ul>
-                    <button class="cta-tertiary buy-btn" data-package="starter">
-                        Buy via Telegram
-                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                    <label class="compliance-checkbox">
-                        <input type="checkbox" required>
-                        I confirm I will not use these services to violate any platform's Terms of Service.
-                    </label>
-                </div>
-
-                <div class="pricing-card pricing-card--featured glass-card">
-                    <h3>Growth</h3>
-                    <p class="price">Most Popular</p>
-                    <p class="description">The balanced choice for rapid, sustained growth.</p>
-                    <ul>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Up to 10,000 interactions</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority speed delivery</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated 24/7 support</li>
-                    </ul>
-                    <button class="cta-tertiary buy-btn" data-package="growth">
-                        Buy via Telegram
-                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                    <label class="compliance-checkbox">
-                        <input type="checkbox" required>
-                        I confirm I will not use these services to violate any platform's Terms of Service.
-                    </label>
-                </div>
-
-                <div class="pricing-card glass-card">
-                    <h3>Pro</h3>
-                    <p class="price">Custom Quote</p>
-                    <p class="description">Max volume and custom solutions for agencies/brands.</p>
-                    <ul>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited custom volume</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Fastest available delivery</li>
-                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> SLA-backed VIP support</li>
-                    </ul>
-                    <button class="cta-tertiary buy-btn" data-package="pro">
-                        Buy via Telegram
-                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                    <label class="compliance-checkbox">
-                        <input type="checkbox" required>
-                        I confirm I will not use these services to violate any platform's Terms of Service.
-                    </label>
-                </div>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="flow" class="container">
-            <h2>Your Purchase Flow: 3 Simple Steps</h2>
-            <div class="flow-steps">
-                <div class="flow-card glass-card">
-                    <span class="step-number">1</span>
-                    <h3>Start in Telegram</h3>
-                    <p>Click **"Open in Telegram"** to start a session with our bot using a secure link.</p>
-                </div>
-                <div class="flow-card glass-card">
-                    <span class="step-number">2</span>
-                    <h3>Choose & Pay Securely</h3>
-                    <p>Select your package **inside the bot**. Payments happen via **Telegram Stars** or the bot's direct payment option.</p>
-                    <p class="small-note">*(Fallback: Pay on website - POST /create-invoice)*</p>
-                </div>
-                <div class="flow-card glass-card">
-                    <span class="step-number">3</span>
-                    <h3>Service Fulfillment</h3>
-                    <p>Once payment is confirmed, the bot will begin your order and you can **track its status** here.</p>
-                </div>
-            </div>
-            <div id="status-panel" class="glass-card hidden">
-                <h3>Order Status: <span id="session-ref-display"></span></h3>
-                <div id="current-status" class="status-box">Waiting for Telegram connection...</div>
-                <p id="status-message" class="small-note">Open Telegram to continue your session.</p>
-                <div id="status-actions">
-                    <button id="restart-poll-btn" class="cta-secondary hidden">Restart Status Check</button>
-                    <button id="stop-poll-btn" class="cta-secondary hidden">Stop Check</button>
-                    <button id="mock-progress-btn" class="cta-tertiary hidden">DEMO: Advance Status</button>
-                </div>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="testimonials" class="container">
-            <h2>Trusted by Users Worldwide</h2>
-            <div class="carousel-wrapper">
-                <div class="testimonial-carousel">
-                    <div class="testimonial-card glass-card">
-                        <div class="user-avatar">
-                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.83 6-3.83 1.98 0 5.97 1.84 6 3.83-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                        </div>
-                        <p class="quote">"Fastest service I've ever used! The Telegram payment was seamless and secure."</p>
-                        <p class="name">— Alex M.</p>
-                    </div>
-                    <div class="testimonial-card glass-card">
-                        <div class="user-avatar">
-                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.83 6-3.83 1.98 0 5.97 1.84 6 3.83-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                        </div>
-                        <p class="quote">"Great retention rate and very professional service. Highly recommend for any brand."</p>
-                        <p class="name">— Sarah K.</p>
-                    </div>
-                    <div class="testimonial-card glass-card">
-                        <div class="user-avatar">
-                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.83 6-3.83 1.98 0 5.97 1.84 6 3.83-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
-                        </div>
-                        <p class="quote">"The process is completely automated. I love not having to leave the Telegram app."</p>
-                        <p class="name">— Jian L.</p>
-                    </div>
-                </div>
-                <div class="carousel-dots">
-                    <span class="dot active" data-slide="0"></span>
-                    <span class="dot" data-slide="1"></span>
-                    <span class="dot" data-slide="2"></span>
-                </div>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="faq" class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-accordion glass-card">
-                <details>
-                    <summary>How fast are the services delivered?</summary>
-                    <p>Most services begin processing instantly and are completed within minutes to a few hours, depending on the volume and network load. You can check the Average Time in the service selection panel in the bot.</p>
-                </details>
-                <details>
-                    <summary>Is paying via Telegram Stars secure?</summary>
-                    <p>Yes, Telegram Stars is the official, secure virtual currency within the Telegram app, backed by Telegram. It offers a secure and convenient way to pay for digital goods.</p>
-                </details>
-                <details>
-                    <summary>What if Telegram doesn't open after I click the button?</summary>
-                    <p>A copyable deep link will be provided in a toast notification. You can manually copy this link and paste it into your browser or the Telegram app.</p>
-                </details>
-            </div>
-        </section>
-
-        <hr class="divider">
-
-        <section id="admin-quicklink" class="container admin-link-section">
-            <p>
-                <a href="/admin-panel-placeholder" target="_blank" rel="noopener noreferrer">Admin Login (UI Placeholder)</a>
-            </p>
-            <p class="admin-warning">**ADMIN WARNING:** Do not commit any secret keys. Enable two-factor authentication. Secure all webhooks.</p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2025 follow.by. All rights reserved.</p>
-            <nav class="footer-nav">
-                <a href="/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-                <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-                <a href="/faq">Support</a>
-            </nav>
-            <p class="legal-copy">By using this service you agree to follow platform terms. The provider is not responsible for suspended accounts.</p>
+            <a onclick="showScreen('home')">🏠 New Order</a>
+            <a onclick="showScreen('orders')">📦 Orders</a>
+            <a onclick="showScreen('addBalanceScreen')">💰 Add Balance</a>
+            <a onclick="showScreen('supportScreen')">💬 Support</a>
+            <a onclick="showScreen('apiScreen')">⚙️ API</a>
+            <a onclick="showScreen('accountScreen')">👤 Account</a>
+            <a onclick="logout()">➡️ Logout</a>
         </div>
-    </footer>
+        
+        <main id="home" class="page-content">
+            <div class="home-container">
+                
+                <div class="welcome-card-new">
+                    <img src="path/to/icon.png" alt="Icon"> <div class="text">
+                        <h3>Welcome Back!</h3>
+                        <p>Total Spent: ₹0.00</p>
+                    </div>
+                </div>
 
-    <div id="toast" class="toast hidden" role="alert" aria-live="assertive">
-        <p id="toast-message">Opening Telegram...</p>
-        <button id="copy-link-btn" class="copy-btn">Copy Deep Link</button>
+                <div class="stats-grid-new">
+                    <div class="stat-item-new">
+                        <img src="path/to/money_icon.png" alt="Money Icon"> <div class="info">
+                            <div class="value">₹0.00</div>
+                            <div class="label">Total Spent</div>
+                        </div>
+                    </div>
+                    <div class="stat-item-new">
+                        <img src="path/to/order_icon.png" alt="Order Icon"> <div class="info">
+                            <div class="value">0</div>
+                            <div class="label">Total Orders</div>
+                        </div>
+                    </div>
+                    <div class="stat-item-new">
+                        <img src="path/to/balance_icon.png" alt="Balance Icon"> <div class="info">
+                            <div class="value">₹0.00</div>
+                            <div class="label">Total Balance</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-box-new">
+                    <h4>Select Your Category</h4>
+                    <div class="category-grid">
+                        <a href="#" class="category-btn">
+                            <img src="path/to/facebook_icon.png" alt="Facebook" class="category-icon"> Facebook
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/instagram_icon.png" alt="Instagram" class="category-icon"> Instagram
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/tiktok_icon.png" alt="TikTok" class="category-icon"> TikTok
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/youtube_icon.png" alt="YouTube" class="category-icon"> YouTube
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/twitter_icon.png" alt="Twitter/X" class="category-icon"> Twitter/X
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/spotify_icon.png" alt="Spotify" class="category-icon"> Spotify
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/snapchat_icon.png" alt="SnapChat" class="category-icon"> SnapChat
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/linkedin_icon.png" alt="LinkedIn" class="category-icon"> LinkedIn
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/telegram_icon.png" alt="Telegram" class="category-icon"> Telegram
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/discord_icon.png" alt="Discord" class="category-icon"> Discord
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/twitch_icon.png" alt="Twitch" class="category-icon"> Twitch
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/traffic_icon.png" alt="Traffic" class="category-icon"> Traffic
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/reviews_icon.png" alt="Reviews" class="category-icon"> Reviews
+                        </a>
+                        <a href="#" class="category-btn">
+                            <img src="path/to/google_icon.png" alt="Google" class="category-icon"> Google
+                        </a>
+                    </div>
+                </div>
+                
+                </div>
+        </main>
+        
+        <div id="ordersScreen" class="page-content hidden">...</div>
+        <div id="addBalanceScreen" class="page-content hidden">...</div>
+        <div id="supportScreen" class="page-content hidden">...</div>
+        <div id="apiScreen" class="page-content hidden">...</div>
+        <div id="accountScreen" class="page-content hidden">...</div>
+        <div id="childPanelScreen" class="page-content hidden">...</div>
+        
     </div>
+    
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
 
-    <script src="code.js"></script>
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+        
+        function showScreen(screenId) {
+            // Hide all main screens
+            document.querySelectorAll('.page-content').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            // Show the selected screen
+            document.getElementById(screenId).classList.remove('hidden');
+            closeNav(); // Close sidebar after selecting a screen
+        }
+
+        // Initial setup to show the main app screen and hide the login
+        document.addEventListener('DOMContentLoaded', () => {
+             // Assuming the user is logged in, show the main app screen
+             document.getElementById('appScreen').classList.remove('hidden'); 
+             document.getElementById('loginScreen').classList.add('hidden');
+             showScreen('home'); // Show the home/new order screen by default
+        });
+
+        // Add dummy functions for your buttons/links (you will replace these later)
+        function login() { /* Your login logic */ }
+        function forgotPassword() { /* Your forgot password logic */ }
+        function showSignUp() { /* Your sign up UI logic */ }
+        function showLogin() { /* Your login UI logic */ }
+        function register() { /* Your registration logic */ }
+        function googleLogin() { /* Your Google login logic */ }
+        function logout() { 
+            // Example logout logic (hides app, shows login)
+            document.getElementById('appScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+        }
+
+        // Add event listeners for the accordion elements on the login screen
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.closest('.faq-item');
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+    
 </body>
 </html>
